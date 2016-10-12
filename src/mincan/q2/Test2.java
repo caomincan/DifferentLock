@@ -54,7 +54,7 @@ public class Test2 {
 				e.printStackTrace();
 			}
         }
-        long average_time = sum_time/num;
+        double average_time = sum_time/num/1000.0;
         System.out.println(num+" Threads With method: "+ method +" average barrier time is "+average_time+" ms");
 	}
 

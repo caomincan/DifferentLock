@@ -17,11 +17,11 @@ public class TestThread3 extends Thread{
 	
 	@Override
 	public void run(){
-		long start = System.currentTimeMillis();
+		long start = System.nanoTime();
 		mylock.lock();
         foo();
 		mylock.unlock();
-		long end = System.currentTimeMillis();
+		long end = System.nanoTime();
 		time = end-start;
 	}
 	
