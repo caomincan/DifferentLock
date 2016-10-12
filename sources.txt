@@ -1,0 +1,8 @@
+./src/mincan/q2/Lock.java
+./src/mincan/q2/Test2.java
+./src/mincan/q2/CLH.java
+./src/mincan/q2/TestThread3.java
+./src/mincan/q2/TTAS.java
+./src/mincan/q2/QNode.java
+
+
