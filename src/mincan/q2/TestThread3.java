@@ -17,12 +17,19 @@ public class TestThread3 extends Thread{
 	
 	@Override
 	public void run(){
-		long start = System.nanoTime();
-		mylock.lock();
-        foo();
-		mylock.unlock();
-		long end = System.nanoTime();
-		time = end-start;
+		int warm_up = 20;
+		for(int i=0;i<warm_up;i++){
+			mylock.lock();
+			mylock.unlock();	
+		}
+		final long start = System.nanoTime();
+		long duration = start;
+		while( duration-start < 2000000){
+			mylock.lock();
+			time++;
+			mylock.unlock();
+			duration = System.nanoTime();
+		}
 	}
 	
 	public void foo(){}

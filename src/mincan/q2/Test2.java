@@ -8,8 +8,9 @@ public class Test2 {
     public final static int DEFAULT_NUM = 4;
 	public final static String TTAS_METHOD = "TTAS";
     public final static String CLH_METHOD = "CLH";
+    public final static String MCS_METHOD = "MCS";
     
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 		int num = 0;
 		int type = 0;
@@ -19,6 +20,7 @@ public class Test2 {
         	switch(args[0]){
         		case TTAS_METHOD: type =1; method="TTAS"; break;
         		case CLH_METHOD: type =2; method= "CLH"; break;
+        		case MCS_METHOD: type = 3; method = "MCS"; break;
         		default: System.out.println("Method: " + args[0]+" Not Found"); break;
         	}
         }else{
@@ -38,24 +40,22 @@ public class Test2 {
         switch(type){
         case 1: l= new TTAS(); break;
         case 2: l= new CLH(); break;
+        case 3: l= new MCS(); break;
         }
         // create threads
         for(int i=0;i<num;i++) threads.add(new TestThread3(l));
         // start threads
-        for(int i=0;i<num;i++) threads.get(i).start();
+        for(int i=0;i<num;i++){
+        	threads.get(i).start();
+        }
         // calculate average time
         long sum_time = 0;
         for(int i=0;i<num;i++){
-        	try {
-				threads.get(i).join();
-				sum_time += ((TestThread3)threads.get(i)).getTime();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			threads.get(i).join();
+			sum_time += ((TestThread3)threads.get(i)).getTime();
         }
-        double average_time = sum_time/num/1000.0;
-        System.out.println(num+" Threads With method: "+ method +" average barrier time is "+average_time+" ms");
+        double average_time = (double)sum_time/num;
+        System.out.println(num+" Threads With method: "+ method +" average throughput is "+average_time);
 	}
 
 }
