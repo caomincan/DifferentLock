@@ -7,26 +7,21 @@ public class TestThread3 extends Thread{
 	
 	private Lock mylock;
 	private int id;
-	private long time;
+	private long count;
 	
 	public TestThread3(Lock lock){
 		mylock = lock;
-		time = 0;
+		count = 0;
 		id = MAX_NUM_THREAD.getAndIncrement();
 	}
 	
 	@Override
 	public void run(){
-		int warm_up = 20;
-		for(int i=0;i<warm_up;i++){
-			mylock.lock();
-			mylock.unlock();	
-		}
 		long start = System.nanoTime();
 		long duration = 0;
 		while( duration < 200000000){
 			mylock.lock();
-			time++;
+			count++;
 			mylock.unlock();
 			duration = System.nanoTime()-start;
 			//System.out.println("Thread id "+id+" duration "+ duration);
@@ -35,7 +30,7 @@ public class TestThread3 extends Thread{
 	
 	public void foo(){}
 	
-	public long getTime(){
-		return time;
+	public long getCount(){
+		return count;
 	}
 }

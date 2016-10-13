@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class Test2 {
     public final static int DEFAULT_NUM = 4;
 	public final static String TTAS_METHOD = "TTAS";
     public final static String CLH_METHOD = "CLH";
     public final static String MCS_METHOD = "MCS";
     
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		int num = 0;
 		int type = 0;
@@ -36,14 +37,9 @@ public class Test2 {
         System.out.println("You have create "+num+" threads");
         System.out.println("With method: "+ method);
         List<Thread> threads = new ArrayList<Thread>();
-        Lock l = null;
-        switch(type){
-        case 1: l= new TTAS(); break;
-        case 2: l= new CLH(); break;
-        case 3: l= new MCS(); break;
-        }
+        Lock lock = (Lock)Class.forName("mincan.q2." + method).newInstance();
         // create threads
-        for(int i=0;i<num;i++) threads.add(new TestThread3(l));
+        for(int i=0;i<num;i++) threads.add(new TestThread3(lock));
         // start threads
         for(int i=0;i<num;i++){
         	threads.get(i).start();
@@ -52,7 +48,7 @@ public class Test2 {
         long sum_time = 0;
         for(int i=0;i<num;i++){
 			threads.get(i).join();
-			sum_time += ((TestThread3)threads.get(i)).getTime();
+			sum_time += ((TestThread3)threads.get(i)).getCount();
         }
         double average_time = (double)sum_time/num;
         System.out.println(num+" Threads With method: "+ method +" average throughput is "+average_time);

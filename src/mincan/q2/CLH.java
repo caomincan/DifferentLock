@@ -4,8 +4,8 @@ import java.util.concurrent.atomic.*;
 
 public class CLH implements Lock{
 	class QNode{
-		boolean locked =false;
-		QNode next = null;
+		volatile boolean locked =false;
+		volatile QNode next = null;
 	}
 	
 	AtomicReference<QNode> tail = new AtomicReference<QNode>(new QNode());
