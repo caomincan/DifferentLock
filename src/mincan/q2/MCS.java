@@ -3,6 +3,11 @@ package mincan.q2;
 import java.util.concurrent.atomic.*;
 
 public class MCS implements Lock {
+	class QNode{
+		boolean locked =false;
+		QNode next = null;
+	}
+	
 	AtomicReference<QNode> tail;
 	ThreadLocal<QNode> myNode;
 	
@@ -40,5 +45,7 @@ public class MCS implements Lock {
 		qnode.next.locked = false;
 		qnode.next = null;
 	}
+	
+
 
 }

@@ -3,6 +3,11 @@ package mincan.q2;
 import java.util.concurrent.atomic.*;
 
 public class CLH implements Lock{
+	class QNode{
+		boolean locked =false;
+		QNode next = null;
+	}
+	
 	AtomicReference<QNode> tail = new AtomicReference<QNode>(new QNode());
 	ThreadLocal<QNode> myPred;
 	ThreadLocal<QNode> myNode;

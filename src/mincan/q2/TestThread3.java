@@ -22,13 +22,14 @@ public class TestThread3 extends Thread{
 			mylock.lock();
 			mylock.unlock();	
 		}
-		final long start = System.nanoTime();
-		long duration = start;
-		while( duration-start < 2000000){
+		long start = System.nanoTime();
+		long duration = 0;
+		while( duration < 200000000){
 			mylock.lock();
 			time++;
 			mylock.unlock();
-			duration = System.nanoTime();
+			duration = System.nanoTime()-start;
+			//System.out.println("Thread id "+id+" duration "+ duration);
 		}
 	}
 	
