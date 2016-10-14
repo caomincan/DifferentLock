@@ -34,7 +34,7 @@ public class Test2 {
         }
         num = num==0? DEFAULT_NUM:num;
         type = type == 0? 1 : type;
-        method = method.compareTo("") == 0 ? "TTAS" : method;
+        method = method.compareTo("") == 0 ? "TTASLock" : method;
         System.out.println("You have create "+num+" threads");
         System.out.println("With method: "+ method);
         List<Thread> threads = new ArrayList<Thread>();
