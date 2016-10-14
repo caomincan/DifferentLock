@@ -75,7 +75,7 @@ public class CLHLock implements Lock {
   }
   
   static class QNode {  // Queue node inner class
-    public boolean locked = false;
+    public volatile boolean locked = false;
   }
 }
 
