@@ -1,6 +1,7 @@
 package mincan.q2;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
 
 public class TestThread3 extends Thread{
 	public static AtomicInteger MAX_NUM_THREAD = new AtomicInteger(0);

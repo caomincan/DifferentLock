@@ -2,6 +2,7 @@ package mincan.q2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.Lock;
 
 
 
@@ -19,9 +20,9 @@ public class Test2 {
         if(args.length == 2 && args[1].matches("^[0-9]+") && args[0].matches("^[A-Z]+")){
         	num = Integer.valueOf(args[1]);
         	switch(args[0]){
-        		case TTAS_METHOD: type =1; method="TTAS"; break;
-        		case CLH_METHOD: type =2; method= "CLH"; break;
-        		case MCS_METHOD: type = 3; method = "MCS"; break;
+        		case TTAS_METHOD: type =1; method="TTASLock"; break;
+        		case CLH_METHOD: type =2; method= "CLHLock"; break;
+        		case MCS_METHOD: type = 3; method = "MCSLock"; break;
         		default: System.out.println("Method: " + args[0]+" Not Found"); break;
         	}
         }else{
