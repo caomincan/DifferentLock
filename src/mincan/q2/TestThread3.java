@@ -18,6 +18,12 @@ public class TestThread3 extends Thread{
 	
 	@Override
 	public void run(){
+		// warm up
+		for(int i=0;i<100;i++){
+			mylock.lock();
+			mylock.unlock();
+		}
+		// Measurement 
 		long start = System.nanoTime();
 		long duration = 0;
 		while( duration < 200000000){
@@ -26,6 +32,11 @@ public class TestThread3 extends Thread{
 			mylock.unlock();
 			duration = System.nanoTime()-start;
 			//System.out.println("Thread id "+id+" duration "+ duration);
+		}
+		// cool down
+		for(int i=0;i<100;i++){
+			mylock.lock();
+			mylock.unlock();
 		}
 	}
 	

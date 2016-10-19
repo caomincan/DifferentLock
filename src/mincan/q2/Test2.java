@@ -26,8 +26,8 @@ public class Test2 {
         		default: System.out.println("Method: " + args[0]+" Not Found"); break;
         	}
         }else{
-        	System.out.println("Usage: java Test <method>  <num>");
-        	System.out.println("Method :  TTAS | CLH");
+        	System.out.println("Usage: java mincan.q2.Test2 <method>  <num>");
+        	System.out.println("Method :  TTAS | CLH | MCS");
         	System.out.println("num must be integer");
         	System.out.println("Defualt running  TTAS with 4 threads");
         	System.out.println("----------------------");
@@ -46,13 +46,13 @@ public class Test2 {
         	threads.get(i).start();
         }
         // calculate average time
-        long sum_time = 0;
+        long sum_count = 0;
         for(int i=0;i<num;i++){
 			threads.get(i).join();
-			sum_time += ((TestThread3)threads.get(i)).getCount();
+			sum_count += ((TestThread3)threads.get(i)).getCount();
         }
-        double average_time = (double)sum_time/num;
-        System.out.println(num+" Threads With method: "+ method +" average throughput is "+average_time);
+        double average_count = (double)sum_count/num;
+        System.out.println(num+" Threads With method: "+ method +" average throughput is "+average_count + " during 2s");
 	}
 
 }
